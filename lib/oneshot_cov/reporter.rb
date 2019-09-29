@@ -1,6 +1,6 @@
 module OneshotCov
 
-  OneshotLog = Struct.new(:path, :md5_hash, :lines)
+  OneshotLog = Struct.new(:path, :lines)
 
   class Reporter
     def initialize(target_path:, logger:, emit_term: nil)
@@ -27,7 +27,7 @@ module OneshotCov
         Coverage.result(clear: true, stop: false).
         select { |k, v| is_target?(k, v) }.
         map do |filepath, v|
-          OneshotLog.new(relative_path(filepath), md5_hash_for(filepath), v)
+          OneshotLog.new(relative_path(filepath), v)
         end
 
       if logs.size > 0
@@ -57,18 +57,6 @@ module OneshotCov
 
     def relative_path(filepath)
       filepath[@target_path.size..-1]
-    end
-
-    def md5_hash_cache
-      @md5_hash_cache ||= {}
-    end
-
-    def md5_hash_for(filepath)
-      if md5_hash_cache.key? filepath
-        md5_hash_cache[filepath]
-      else
-        md5_hash_cache[filepath] = Digest::MD5.file(filepath).hexdigest
-      end
     end
   end
 end
