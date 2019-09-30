@@ -18,7 +18,8 @@ module OneshotCov
   end
 
   def emit(force_emit: false)
-    @reporter&.emit(force_emit)
+    OneshotCov.configure if @reporter.nil?
+    @reporter.emit(force_emit)
   end
 
   def configure(target_path: Rails.root, logger: OneshotCov::Logger.new('log/oneshot_cov.log'), emit_term: nil)
