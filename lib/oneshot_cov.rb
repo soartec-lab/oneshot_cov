@@ -22,7 +22,7 @@ module OneshotCov
     @reporter&.emit(force_emit)
   end
 
-  def configure(target_path: Rails.root, logger: OneshotCov::Logger.new('log/oneshot_coverage.log'), emit_term: nil)
+  def configure(target_path: Rails.root, logger: OneshotCov::Logger.new('log/oneshot_cov.log'), emit_term: nil)
     target_path_by_pathname =
       if target_path.is_a? Pathname
         target_path
