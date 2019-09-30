@@ -10,7 +10,7 @@ module OneshotCov
       current_coverage = fetch
 
       new_logs.each do |new_log|
-        key = "#{new_log.path}-#{new_log.md5_hash}"
+        key = "#{new_log.path}"
 
         logged_lines = current_coverage.fetch(key, [])
         current_coverage[key] = logged_lines | new_log.lines

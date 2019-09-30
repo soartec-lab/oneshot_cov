@@ -1,5 +1,4 @@
 require "coverage"
-require "digest/md5"
 
 require "oneshot_cov/logger"
 require "oneshot_cov/middleware"
