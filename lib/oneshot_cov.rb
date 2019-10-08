@@ -18,7 +18,6 @@ module OneshotCov
   end
 
   def emit(force_emit: false)
-    OneshotCov.configure if @reporter.nil?
     @reporter.emit(force_emit)
   end
 

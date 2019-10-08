@@ -22,7 +22,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a configuration file to run `OneshotCov.configure` and` OneshotCov.start`
+
+```ruby:config/initializers/oneshot_cov.rb
+logger = XXX
+
+OneshotCov.configure(
+  logger: logger,
+  emit_term: 600,
+)
+OneshotCov.start
+```
 
 ## Development
 
