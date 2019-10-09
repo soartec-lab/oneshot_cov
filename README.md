@@ -23,6 +23,8 @@ Or install it yourself as:
 ## Usage
 
 Create a configuration file to run `OneshotCov.configure` and` OneshotCov.start`
+The logger sample will be described later.
+
 
 ```ruby:config/initializers/oneshot_cov.rb
 logger = XXX
@@ -32,6 +34,16 @@ OneshotCov.configure(
   emit_term: 600,
 )
 OneshotCov.start
+```
+
+### Sample loggers
+
+* LineByLineLogger
+
+```
+app/controllers/users/user?controller.rb: 2
+app/controllers/users/user?controller.rb: 3
+app/controllers/users/user?controller.rb: 4
 ```
 
 ## Development
