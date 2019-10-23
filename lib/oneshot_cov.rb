@@ -1,7 +1,7 @@
 require "coverage"
 
 require "oneshot_cov/logger/line_by_line_logger"
-require "oneshot_cov/logger/replace_logger"
+require "oneshot_cov/logger/replace_logger" 
 require "oneshot_cov/middleware"
 require "oneshot_cov/reporter"
 require "oneshot_cov/railtie" if defined?(Rails)
@@ -22,7 +22,11 @@ module OneshotCov
     @reporter.emit(force_emit)
   end
 
-  def configure(target_path: Rails.root, logger: OneshotCov::Logger.new('log/oneshot_cov.log'), emit_term: nil)
+  def configure(target_path: Rails.root, logger: nil, emit_term: nil)
+    if logger.nil?
+      raise ArgumentError.new("Specifying logger in `OneshotCov.configure` is mandatory`")
+    end
+
     target_path_by_pathname =
       if target_path.is_a? Pathname
         target_path
