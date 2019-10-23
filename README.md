@@ -25,12 +25,11 @@ Or install it yourself as:
 Create a configuration file to run `OneshotCov.configure` and` OneshotCov.start`
 The logger sample will be described later.
 
-
 ```ruby:config/initializers/oneshot_cov.rb
-logger = XXX
+logger = Rails.application.config.oneshot_cov_logger
 
 OneshotCov.configure(
-  logger: logger,
+  logger: OneshotCov::Logger::LineByLineLogger.new(logger),
   emit_term: 600,
 )
 OneshotCov.start
@@ -38,7 +37,15 @@ OneshotCov.start
 
 ### Sample loggers
 
-* LineByLineLogger
+* LineByLineLogger(logger)
+
+The logger passed to the argument is set in the application config
+please
+
+```ruby:config/application.rb
+config.oneshot_cov_logger = Logger.new(Rails.root.join('log/oneshot_cov.log'))
+config.oneshot_cov_logger.formatter = proc { |_, _, _, msg| "#{msg}\n" }
+```
 
 ```
 app/controllers/users/user?controller.rb: 2
