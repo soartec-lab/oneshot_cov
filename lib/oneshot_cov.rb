@@ -1,6 +1,7 @@
 require "coverage"
 
-require "oneshot_cov/logger"
+require "oneshot_cov/logger/line_by_line_logger"
+require "oneshot_cov/logger/replace_logger"
 require "oneshot_cov/middleware"
 require "oneshot_cov/reporter"
 require "oneshot_cov/railtie" if defined?(Rails)
