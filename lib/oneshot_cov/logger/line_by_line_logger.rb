@@ -8,7 +8,7 @@ module OneshotCov
       def post(new_logs)
         new_logs.each do |new_log|
           log_path = new_log.path
-          oneshot_lines = new_log.lines[:oneshot_lines]
+          oneshot_lines = new_log.lines
 
           oneshot_lines.each do |line|
             @logger.info("#{log_path}: #{line}")

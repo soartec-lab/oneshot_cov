@@ -14,7 +14,7 @@ module OneshotCov
           key = "#{new_log.path}"
 
           logged_lines = current_coverage.fetch(key, [])
-          current_coverage[key] = logged_lines | new_log.lines[:oneshot_lines]
+          current_coverage[key] = logged_lines | new_log.lines
         end
         save(current_coverage)
       end 
