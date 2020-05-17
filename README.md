@@ -53,6 +53,30 @@ app/controllers/users/user?controller.rb: 3
 app/controllers/users/user?controller.rb: 4
 ```
 
+* EachFileLogger(logger)
+
+The logger passed to the argument is set in the application config
+please
+
+```ruby:config/application.rb
+config.oneshot_cov_logger = Logger.new(Rails.root.join('log/oneshot_cov.log'))
+config.oneshot_cov_logger.formatter = proc { |_, _, _, msg| "#{msg}\n" }
+```
+
+```ruby:config/initializers/oneshot_cov.rb
+logger = Rails.application.config.oneshot_cov_logger
+
+OneshotCov.configure(
+  logger: OneshotCov::Logger::EachFileLogger.new(logger),
+  emit_term: 600,
+)
+OneshotCov.start
+```
+
+```
+app/controllers/users/user?controller.rb: 2,3,4
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
